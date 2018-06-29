@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Aplication</string>
+    <string name="adauga_produs">Adauga Produs</string>
+    <string name="numele_produsului">Numele Produsului</string>
+    <string name="categoria_produsului">Categoria produsului</string>
+    <string name="empty_fields_message">Camp necompletat</string>
 </resources>
