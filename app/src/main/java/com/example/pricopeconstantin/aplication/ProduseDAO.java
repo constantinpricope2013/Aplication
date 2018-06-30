@@ -38,6 +38,9 @@ public class ProduseDAO {
     public void open() throws SQLException {
         mDatabase = mDbHelper.getWritableDatabase();
     }
+    public void close() {
+        mDbHelper.close();
+    }
 
     public Produse adaugareProdus(String numeProdus, String categorie) {
         ContentValues values = new ContentValues();

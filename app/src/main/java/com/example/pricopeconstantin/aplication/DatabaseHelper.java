@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    public static final int DATABASE_VERSION=1;
+
     public static final String TABLE_PRODUS = "Poduse";
     public static final String COLUMN_ID_PRODUS = "ID_PRODUS";
     public static final String COLUMN_NUME_PRODUS = "Nume_Produs";
@@ -19,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public DatabaseHelper(Context context) {
-        super(context, TABLE_PRODUS, null, 1);
+        super(context, TABLE_PRODUS, null, DATABASE_VERSION);
     }
 
     @Override
