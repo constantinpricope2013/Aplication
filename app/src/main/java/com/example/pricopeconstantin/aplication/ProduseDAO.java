@@ -21,6 +21,7 @@ public class ProduseDAO {
     private String[] mAllColumns  = { DatabaseHelper.COLUMN_ID_PRODUS,
             DatabaseHelper.COLUMN_NUME_PRODUS,
             DatabaseHelper.COLUMN_CATEGORIE_PRODUS,
+            DatabaseHelper.COLUMN_PRET_PRODUS,
             };
 
     public ProduseDAO(Context context) {
@@ -28,6 +29,7 @@ public class ProduseDAO {
         this.mContext = context;
         // open the database
         try {
+
             open();
         } catch (SQLException e) {
             Log.e(TAG, "SQLException on openning database " + e.getMessage());
@@ -36,16 +38,19 @@ public class ProduseDAO {
     }
 
     public void open() throws SQLException {
+        mDbHelper.onUpgrade(mDatabase,1,2);
         mDatabase = mDbHelper.getWritableDatabase();
+
     }
     public void close() {
         mDbHelper.close();
     }
 
-    public Produse adaugareProdus(String numeProdus, String categorie) {
+    public Produse adaugareProdus(String numeProdus, String categorie,int pretProdus) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_NUME_PRODUS, numeProdus);
         values.put(DatabaseHelper.COLUMN_CATEGORIE_PRODUS, categorie);
+        values.put(DatabaseHelper.COLUMN_PRET_PRODUS, pretProdus);
 
         long insertId = mDatabase.insert(DatabaseHelper.TABLE_PRODUS, null, values);
         Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_PRODUS, mAllColumns,
@@ -61,7 +66,8 @@ public class ProduseDAO {
        Produse produs = new Produse();
         produs.setID(cursor.getLong(0));
         produs.setNumeProdus(cursor.getString(1));
-        produs.setCategorieProdus(cursor.getString(2));
+        produs.setCategorieProdus(cursor.getString(3));
+        produs.setPretProdus(cursor.getInt(2));
 
 
         return produs;

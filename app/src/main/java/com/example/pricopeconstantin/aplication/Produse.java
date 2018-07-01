@@ -6,6 +6,7 @@ package com.example.pricopeconstantin.aplication;
 
 public class Produse {
     private static long ID;
+    private static int pretProdus;
 
     public static long getID() {
         return ID;
@@ -35,6 +36,12 @@ public class Produse {
     }
 
 
+    public static int getPretProdus() {
+        return pretProdus;
+    }
 
+    public static void setPretProdus(int pretProdus) {
+        Produse.pretProdus = pretProdus;
+    }
 }
 

@@ -18,7 +18,7 @@ import java.sql.SQLException;
 
 public class AddProdusActivity extends Activity implements View.OnClickListener {
 
-    EditText num1, num2;
+    EditText num1, num2,editText;
     TextView textView;
     Button add;
     ProduseDAO produseDAO;
@@ -33,6 +33,7 @@ public class AddProdusActivity extends Activity implements View.OnClickListener 
         textView = (TextView) findViewById(R.id.textView);
         num1 = (EditText) findViewById(R.id.etnum1);
         num2 = (EditText) findViewById(R.id.etnum2);
+        editText = (EditText) findViewById(R.id.editText);
         this.produseDAO = new ProduseDAO(this);
         this.add.setOnClickListener(this);
 
@@ -49,16 +50,16 @@ public class AddProdusActivity extends Activity implements View.OnClickListener 
             case R.id.add:
                 Editable numeProdus = num1.getText();
                 Editable categorieProdus = num2.getText();
+                Editable pretProdus = editText.getText();
                 if (!TextUtils.isEmpty(numeProdus) && !TextUtils.isEmpty(categorieProdus)) {
 
 
                     try {
-                        Produse produsCreat = produseDAO.adaugareProdus(numeProdus.toString(), categorieProdus.toString());
+                        Produse produsCreat = produseDAO.adaugareProdus(numeProdus.toString(), categorieProdus.toString(), Integer.parseInt(pretProdus.toString()));
                     } catch (Exception e) {
-                        Log.e(TAG, "SQLException on openning database " + e.getMessage());
+                        Log.e(TAG, "Eroare in creearea produsului " + e.getMessage());
                         e.printStackTrace();
                     }
-
                     textView.setVisibility(1);
                     textView.setText("Produs adaugat cu succes");
                 } else {
