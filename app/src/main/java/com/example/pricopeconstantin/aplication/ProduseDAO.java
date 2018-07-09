@@ -83,6 +83,11 @@ public class ProduseDAO {
         return listaProduse;
     }
 
+    public static void deleteProduct(){
+
+
+    }
+
     public static Produse cursorToProdus(Cursor cursor) {
        Produse produs = new Produse();
         produs.setID(cursor.getLong(0));

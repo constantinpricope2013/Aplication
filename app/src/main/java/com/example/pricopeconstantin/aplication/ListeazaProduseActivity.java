@@ -36,25 +36,28 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+
             case R.id.btn_add:
+                Log.e(TAG, "Buton de adauga apasat.");
                 Intent myIntent = new Intent(ListeazaProduseActivity.this, AddProdusActivity.class);
                 ListeazaProduseActivity.this.startActivity(myIntent);
-                break;
         }
     }
     private void populateListView() {
         //Obtinem date si le introducem in lista
-        Log.d(TAG, "populateListView: Displaying data in the ListView.");
+        Log.e(TAG, "populateListView: Displaying data in the ListView.");
         ProduseDAO produseDAO;
 
         List<Produse> listaProduse = ProduseDAO.listeazaToateProduse();
         List<String> listaProdusString = new ArrayList<>();
-        if(listaProduse.size() > 1) {
+
+        if(listaProduse.size() > 0) {
             int dim = listaProduse.size();
-            Log.e(TAG,Integer.toString(dim));
-            for (int i = 1; i <= listaProduse.size() - 1; i++) {
-                String str = (listaProduse.get(i)).toString();
-                listaProdusString.add(str);
+            Log.e(TAG,"Index pentru baza de date: " + Integer.toString(dim));
+            for (int i = 0; i < listaProduse.size() ; i++) {
+                    String str = Integer.toString(i) + "  " + (listaProduse.get(i)).toString();
+                    Log.e(TAG, (listaProduse.get(i)).toString());
+                    listaProdusString.add(str);
             }
             ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaProdusString);
             lista_produse.setAdapter(adapter);

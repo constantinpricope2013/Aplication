@@ -5,43 +5,43 @@ package com.example.pricopeconstantin.aplication;
  */
 
 public class Produse {
-    private static long ID;
-    private static int pretProdus;
+    private  long ID;
+    private  int pretProdus;
 
-    public static long getID() {
+    public  long getID() {
         return ID;
     }
 
-    public static void setID(long ID) {
-        Produse.ID = ID;
+    public  void setID(long ID) {
+        this.ID = ID;
     }
 
-    private static String numeProdus;
-    private static String categorieProdus;
+    private  String numeProdus;
+    private  String categorieProdus;
 
-    public static String getNumeProdus() {
+    public  String getNumeProdus() {
         return numeProdus;
     }
 
-    public static void setNumeProdus(String numeProdus) {
-        Produse.numeProdus = numeProdus;
+    public  void setNumeProdus(String numeProdus) {
+        this.numeProdus = numeProdus;
     }
 
-    public static String getCategorieProdus() {
+    public  String getCategorieProdus() {
         return categorieProdus;
     }
 
-    public static void setCategorieProdus(String categorieProdus) {
-        Produse.categorieProdus = categorieProdus;
+    public  void setCategorieProdus(String categorieProdus) {
+        this.categorieProdus = categorieProdus;
     }
 
 
-    public static int getPretProdus() {
+    public  int getPretProdus() {
         return pretProdus;
     }
 
-    public static void setPretProdus(int pretProdus) {
-        Produse.pretProdus = pretProdus;
+    public  void setPretProdus(int pretProdus) {
+        this.pretProdus = pretProdus;
     }
 
     @Override
