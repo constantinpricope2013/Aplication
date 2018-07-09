@@ -4,12 +4,14 @@ package com.example.pricopeconstantin.aplication; /**
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION=2;
 
     public static final String bd = "Poduse";
+    public static final String TAG = "DATABASE_HELPER";
 
     public static final String TABLE_PRODUS = "Poduse";
     public static final String COLUMN_ID_PRODUS = "ID_PRODUS";
@@ -41,7 +43,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i,int  i1) {
+        Log.e(TAG,"Eroare in updatarea bazei de date ");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIE);
         onCreate(sqLiteDatabase);
     }
 

@@ -11,10 +11,17 @@
     >
 
     <Button
-        android:id="@+id/add"
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Adauga Produs" />
+
+    <Button
+        android:id="@+id/listeazaProduse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vezi toate produsele existente" />
+
 
 </LinearLayout>
 

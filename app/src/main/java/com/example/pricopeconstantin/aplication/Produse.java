@@ -43,5 +43,10 @@ public class Produse {
     public static void setPretProdus(int pretProdus) {
         Produse.pretProdus = pretProdus;
     }
+
+    @Override
+    public String toString() {
+        return numeProdus;
+    }
 }
 

@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Pricope Constantin on 6/27/2018.
@@ -16,9 +18,9 @@ public class ProduseDAO {
 
     public static final String TAG = "EmployeeDAO";
     private Context mContext;
-    private SQLiteDatabase mDatabase;
+    private static SQLiteDatabase mDatabase;
     private DatabaseHelper mDbHelper;
-    private String[] mAllColumns  = { DatabaseHelper.COLUMN_ID_PRODUS,
+    private static String[] mAllColumns  = { DatabaseHelper.COLUMN_ID_PRODUS,
             DatabaseHelper.COLUMN_NUME_PRODUS,
             DatabaseHelper.COLUMN_CATEGORIE_PRODUS,
             DatabaseHelper.COLUMN_PRET_PRODUS,
@@ -38,7 +40,7 @@ public class ProduseDAO {
     }
 
     public void open() throws SQLException {
-        mDbHelper.onUpgrade(mDatabase,1,2);
+        //mDbHelper.onUpgrade(mDatabase,1,2);
         mDatabase = mDbHelper.getWritableDatabase();
 
     }
@@ -62,7 +64,26 @@ public class ProduseDAO {
         return newProdus;
     }
 
-    public Produse cursorToProdus(Cursor cursor) {
+    public static List<Produse> listeazaToateProduse(){
+
+        List<Produse> listaProduse = new ArrayList<Produse>();
+        Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_PRODUS, mAllColumns, null,null,null,null,null);
+        cursor.moveToFirst();
+        Log.e(TAG,"While in progres");
+
+        Produse produs;
+
+        while (!cursor.isAfterLast()) {
+            Log.e(TAG,"While accesat");
+            produs = cursorToProdus(cursor);
+            listaProduse.add(produs);
+            cursor.moveToNext();
+        }
+
+        return listaProduse;
+    }
+
+    public static Produse cursorToProdus(Cursor cursor) {
        Produse produs = new Produse();
         produs.setID(cursor.getLong(0));
         produs.setNumeProdus(cursor.getString(1));
