@@ -19,6 +19,7 @@ import java.util.List;
 
 public class ListeazaProduseActivity extends Activity implements AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener, View.OnClickListener {
 
+
     ListView lista_produse;
     ImageButton adaugaProdus;
     private static final String TAG = "ListDataActivity";
@@ -50,6 +51,7 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
 
         List<Produse> listaProduse = ProduseDAO.listeazaToateProduse();
         List<String> listaProdusString = new ArrayList<>();
+        List<String> listaCategorii = new ArrayList<>();
 
         if(listaProduse.size() > 0) {
             int dim = listaProduse.size();
@@ -58,9 +60,20 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
                     String str = Integer.toString(i) + "  " + (listaProduse.get(i)).toString();
                     Log.e(TAG, (listaProduse.get(i)).toString());
                     listaProdusString.add(str);
+
+
+                    String str2 =(listaProduse.get(i)).getCategorieProdus();
+                Log.e(TAG,"Nume categorie: "+ str2);
+                   listaCategorii.add(str2);
+
             }
+            //Adauga categorii automat in functie de categoriile prodduselor existente
+            // CategorieDAO.Adauga_Categorii(listaCategorii);
+
             ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaProdusString);
             lista_produse.setAdapter(adapter);
+
+
         }
         else
         {

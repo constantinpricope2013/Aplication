@@ -18,8 +18,8 @@ public class ProduseDAO {
 
     public static final String TAG = "EmployeeDAO";
     private Context mContext;
-    private static SQLiteDatabase mDatabase;
-    private DatabaseHelper mDbHelper;
+    public static SQLiteDatabase mDatabase;
+    public static DatabaseHelper mDbHelper;
     private static String[] mAllColumns  = { DatabaseHelper.COLUMN_ID_PRODUS,
             DatabaseHelper.COLUMN_NUME_PRODUS,
             DatabaseHelper.COLUMN_CATEGORIE_PRODUS,
@@ -45,7 +45,7 @@ public class ProduseDAO {
 
     }
     public void close() {
-        mDbHelper.close();
+       mDbHelper.close();
     }
 
     public Produse adaugareProdus(String numeProdus, String categorie,int pretProdus) {
@@ -64,7 +64,7 @@ public class ProduseDAO {
         return newProdus;
     }
 
-    public static List<Produse> listeazaToateProduse(){
+    public static   List<Produse> listeazaToateProduse(){
 
         List<Produse> listaProduse = new ArrayList<Produse>();
         Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_PRODUS, mAllColumns, null,null,null,null,null);
@@ -92,8 +92,8 @@ public class ProduseDAO {
        Produse produs = new Produse();
         produs.setID(cursor.getLong(0));
         produs.setNumeProdus(cursor.getString(1));
-        produs.setCategorieProdus(cursor.getString(3));
-        produs.setPretProdus(cursor.getInt(2));
+        produs.setCategorieProdus(cursor.getString(2));
+        produs.setPretProdus(cursor.getInt(3));
 
 
         return produs;
