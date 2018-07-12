@@ -17,36 +17,20 @@ import java.util.List;
 public class ProduseDAO {
 
     public static final String TAG = "EmployeeDAO";
-    private Context mContext;
-    public static SQLiteDatabase mDatabase;
-    public static DatabaseHelper mDbHelper;
+    Context  mContext;
+
+
     private static String[] mAllColumns  = { DatabaseHelper.COLUMN_ID_PRODUS,
             DatabaseHelper.COLUMN_NUME_PRODUS,
             DatabaseHelper.COLUMN_CATEGORIE_PRODUS,
             DatabaseHelper.COLUMN_PRET_PRODUS,
             };
 
-    public ProduseDAO(Context context) {
-        mDbHelper = new DatabaseHelper(context);
+    public  ProduseDAO(Context context) {
         this.mContext = context;
-        // open the database
-        try {
-
-            open();
-        } catch (SQLException e) {
-            Log.e(TAG, "SQLException on openning database " + e.getMessage());
-            e.printStackTrace();
-        }
     }
 
-    public void open() throws SQLException {
-        //mDbHelper.onUpgrade(mDatabase,1,2);
-        mDatabase = mDbHelper.getWritableDatabase();
 
-    }
-    public void close() {
-       mDbHelper.close();
-    }
 
     public Produse adaugareProdus(String numeProdus, String categorie,int pretProdus) {
         ContentValues values = new ContentValues();
@@ -54,20 +38,24 @@ public class ProduseDAO {
         values.put(DatabaseHelper.COLUMN_CATEGORIE_PRODUS, categorie);
         values.put(DatabaseHelper.COLUMN_PRET_PRODUS, pretProdus);
 
-        long insertId = mDatabase.insert(DatabaseHelper.TABLE_PRODUS, null, values);
-        Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_PRODUS, mAllColumns,
-                DatabaseHelper.COLUMN_ID_PRODUS + " = " + insertId, null, null,
-                null, null);
+        Cursor cursor;
+        DAO dao=new DAO(mContext, DatabaseHelper.TABLE_PRODUS, values, mAllColumns, DatabaseHelper.COLUMN_ID_PRODUS,1);
+        cursor = dao.getCursor();
+
         cursor.moveToFirst();
         Produse newProdus = cursorToProdus(cursor);
         cursor.close();
         return newProdus;
     }
 
-    public static   List<Produse> listeazaToateProduse(){
+    public   List<Produse> listeazaToateProduse(){
 
         List<Produse> listaProduse = new ArrayList<Produse>();
-        Cursor cursor = mDatabase.query(DatabaseHelper.TABLE_PRODUS, mAllColumns, null,null,null,null,null);
+
+        Cursor cursor ;//= mDatabase.query(DatabaseHelper.TABLE_PRODUS, mAllColumns, null,null,null,null,null);
+        DAO dao=new DAO(mContext, DatabaseHelper.TABLE_PRODUS, null, mAllColumns, DatabaseHelper.COLUMN_ID_PRODUS,0);
+
+        cursor = dao.getCursor();
         cursor.moveToFirst();
         Log.e(TAG,"While in progres");
 

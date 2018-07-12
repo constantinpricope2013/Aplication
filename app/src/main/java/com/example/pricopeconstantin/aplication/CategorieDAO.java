@@ -40,22 +40,24 @@ public class CategorieDAO {
         ProduseDAO.mDatabase = ProduseDAO.mDbHelper.getWritableDatabase();
 
 */
-
+        mContext=context;
     }
 
-    public static Categorie adaugareCategorie(String numeCategorie){
+    public  Categorie adaugareCategorie(String numeCategorie){
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.COLUMN_NUME_CATEGORIE, numeCategorie);
 
+        Cursor cursor;
+        DAO dao=new DAO(mContext, DatabaseHelper.TABLE_CATEGORIE, contentValues, mAllColumns, DatabaseHelper.COLUMN_ID_CATEGORIE,1);
+        cursor = dao.getCursor();
 
-        long insertId = ProduseDAO.mDatabase.insert(DatabaseHelper.TABLE_CATEGORIE, null, contentValues);
-
-        Log.e(TAG,"id inserted: "+ Integer.toString((int) insertId));
+/*        long insertId = ProduseDAO.mDatabase.insert(DatabaseHelper.TABLE_CATEGORIE, null, contentValues);
 
         Cursor cursor =  ProduseDAO.mDatabase.query(DatabaseHelper.TABLE_CATEGORIE, mAllColumns,
                 DatabaseHelper.COLUMN_NUME_CATEGORIE + " = " + insertId, null, null,
-                null, null);
+                null, null);*/
+
         cursor.moveToFirst();
         Categorie newCategorie = cursorToCategorie(cursor);
         cursor.close();
@@ -64,17 +66,22 @@ public class CategorieDAO {
 
     }
 
-    public static void Adauga_Categorii(List<String> list)
+    public void Adauga_Categorii(List<String> list)
     {
         for (int i = 0 ; i< list.size();i++)
         {
-            Categorie categ= CategorieDAO.adaugareCategorie(list.get(i));
+            Categorie categ= this.adaugareCategorie(list.get(i));
         }
     }
 
-    public static List<Categorie> obtineListaCategorii(){
+    public  List<Categorie> obtineListaCategorii(){
         List<Categorie> listaCategorie = new ArrayList<>();
-        Cursor cursor = ProduseDAO.mDatabase.query(DatabaseHelper.TABLE_CATEGORIE, mAllColumns, null,null,null,null,null);
+
+        //Cursor cursor = ProduseDAO.mDatabase.query(DatabaseHelper.TABLE_CATEGORIE, mAllColumns, null,null,null,null,null);
+
+        Cursor cursor;
+        DAO dao=new DAO(mContext, DatabaseHelper.TABLE_CATEGORIE, null, mAllColumns, DatabaseHelper.COLUMN_ID_CATEGORIE,0);
+        cursor = dao.getCursor();
         cursor.moveToFirst();
         Log.e(TAG,"While in progres");
 
@@ -92,9 +99,9 @@ public class CategorieDAO {
     }
 
 
-    public void close() {
-        ProduseDAO.mDbHelper.close();
-    }
+   // public void close() {
+   //     ProduseDAO.mDbHelper.close();
+    //}
 
     public static Categorie cursorToCategorie(Cursor cursor) {
         Categorie categorie = new Categorie();

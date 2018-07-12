@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
 
     EditText num1,num2;
     TextView resu;
-    Button add;
+    Button add,add_categorie;
     Button listeazaProduse,listeazaCategorii;
     public String TAG = "MainActivity";
 
@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
         add = findViewById(R.id.button);
         listeazaProduse = findViewById(R.id.listeazaProduse);
         listeazaCategorii  = findViewById(R.id.listeazaCategorii);
+        add_categorie = findViewById(R.id.button1);
 
 
 
@@ -55,6 +56,14 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent thirdIntent = new Intent(MainActivity.this, ListeazaCategoriiActivity.class);
                 MainActivity.this.startActivity(thirdIntent);
+                Log.e(TAG, "Accesam pagina listare categorii ");
+            }}
+        );
+        add_categorie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fourthIntent = new Intent(MainActivity.this, AddCategorieActivity.class);
+                MainActivity.this.startActivity(fourthIntent);
                 Log.e(TAG, "Accesam pagina listare categorii ");
             }}
         );

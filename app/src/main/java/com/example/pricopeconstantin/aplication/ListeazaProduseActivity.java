@@ -23,11 +23,15 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
     ListView lista_produse;
     ImageButton adaugaProdus;
     private static final String TAG = "ListDataActivity";
+    ProduseDAO produseDAO;
+    CategorieDAO categorieDAO;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "Creare activitate de populare lista ");
         setContentView(R.layout.lista_produse);
+        this.produseDAO = new ProduseDAO(this);
+        this.categorieDAO = new CategorieDAO(this);
 
         lista_produse = (ListView) findViewById(R.id.lista_produse);
 
@@ -47,9 +51,8 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
     private void populateListView() {
         //Obtinem date si le introducem in lista
         Log.e(TAG, "populateListView: Displaying data in the ListView.");
-        ProduseDAO produseDAO;
 
-        List<Produse> listaProduse = ProduseDAO.listeazaToateProduse();
+        List<Produse> listaProduse = produseDAO.listeazaToateProduse();
         List<String> listaProdusString = new ArrayList<>();
         List<String> listaCategorii = new ArrayList<>();
 

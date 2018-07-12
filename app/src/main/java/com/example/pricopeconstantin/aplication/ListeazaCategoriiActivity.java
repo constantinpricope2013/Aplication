@@ -21,11 +21,12 @@ public class ListeazaCategoriiActivity extends Activity implements AdapterView.O
     private String TAG = "Listeaza Categorii";
     //Obtinem date si le introducem in lista
     ProduseDAO produseDAO;
+    CategorieDAO categorieDAO;
 
     private void populateListView(){
         Log.e(TAG,"populateListView: Displaying data in the ListView.");
 
-        List<Categorie> listaCategorii = CategorieDAO.obtineListaCategorii();
+        List<Categorie> listaCategorii = categorieDAO.obtineListaCategorii();
         List<String> listaCategoriString = new ArrayList<>();
         if(listaCategorii.size()>0)
         {
@@ -68,7 +69,8 @@ public class ListeazaCategoriiActivity extends Activity implements AdapterView.O
         super.onCreate(savedInstanceState);
         Log.e(TAG, "Creare activitate de populare lista ");
         setContentView(R.layout.lista_produse);
-
+        this.produseDAO = new ProduseDAO(this);
+        this.categorieDAO = new CategorieDAO(this);
         lista_categorii = (ListView) findViewById(R.id.lista_produse);
 
         populateListView();

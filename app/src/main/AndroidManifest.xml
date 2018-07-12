@@ -21,6 +21,7 @@
         <activity android:label="@string/app_name" android:name=".AddProdusActivity"/>
         <activity android:name=".ListeazaProduseActivity" />
         <activity android:name=".ListeazaCategoriiActivity" />
+        <activity android:name=".AddCategorieActivity" />
     </application>
 
 </manifest>

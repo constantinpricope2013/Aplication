@@ -29,6 +29,7 @@ public class AddProdusActivity extends Activity implements View.OnClickListener,
     int pozitieCategorie=-1;
     Button add;
     ProduseDAO produseDAO;
+    CategorieDAO categorieDAO;
     private String TAG = "ADDPRODUS";
     List<Categorie> listaCategorii ;
     List<String> listaCategoriString = new ArrayList<>();
@@ -45,8 +46,9 @@ public class AddProdusActivity extends Activity implements View.OnClickListener,
         sp1 = (Spinner) findViewById(R.id.spinner1);
         editText = (EditText) findViewById(R.id.editText);
         this.produseDAO = new ProduseDAO(this);
+        this.categorieDAO = new CategorieDAO(this);
 
-        listaCategorii = CategorieDAO.obtineListaCategorii();
+        listaCategorii = categorieDAO.obtineListaCategorii();
 
         Log.e(TAG, "Index pentru baza de date: " + listaCategorii.size());
         if (listaCategorii.size() > 0) {
@@ -64,7 +66,7 @@ public class AddProdusActivity extends Activity implements View.OnClickListener,
             sp1.setAdapter(adapter);
             sp1.setOnItemSelectedListener(this);
         }
-        this.add.setOnClickListener(this);
+        //this.add.setOnClickListener(this);
 
     }
 
