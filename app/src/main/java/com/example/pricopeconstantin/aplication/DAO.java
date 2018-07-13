@@ -49,7 +49,7 @@ public class DAO{// implements Runnable{
                             ID + " = " + insertId, null, null,
                             null, null);
                 } else {
-                    this.cursor = mDatabase.query(numeleTabelului, mAllColumns, 
+                    this.cursor = mDatabase.query(numeleTabelului, mAllColumns,
                             null, null, null,
                             null, null);
                 }

@@ -17,7 +17,7 @@ public class Produse {
     }
 
     private  String numeProdus;
-    private  String categorieProdus;
+    private  int categorieProdus;
 
     public  String getNumeProdus() {
         return numeProdus;
@@ -27,11 +27,11 @@ public class Produse {
         this.numeProdus = numeProdus;
     }
 
-    public  String getCategorieProdus() {
+    public  int getCategorieProdus() {
         return categorieProdus;
     }
 
-    public  void setCategorieProdus(String categorieProdus) {
+    public  void setCategorieProdus(int categorieProdus) {
         this.categorieProdus = categorieProdus;
     }
 

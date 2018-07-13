@@ -44,7 +44,7 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
 
             case R.id.btn_add:
                 Log.e(TAG, "Buton de adauga apasat.");
-                Intent myIntent = new Intent(ListeazaProduseActivity.this, AddProdusActivity.class);
+                Intent myIntent = new Intent(ListeazaProduseActivity.this, AddCategorieActivity.class);
                 ListeazaProduseActivity.this.startActivity(myIntent);
         }
     }
@@ -54,7 +54,6 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
 
         List<Produse> listaProduse = produseDAO.listeazaToateProduse();
         List<String> listaProdusString = new ArrayList<>();
-        List<String> listaCategorii = new ArrayList<>();
 
         if(listaProduse.size() > 0) {
             int dim = listaProduse.size();
@@ -65,13 +64,8 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
                     listaProdusString.add(str);
 
 
-                    String str2 =(listaProduse.get(i)).getCategorieProdus();
-                Log.e(TAG,"Nume categorie: "+ str2);
-                   listaCategorii.add(str2);
 
             }
-            //Adauga categorii automat in functie de categoriile prodduselor existente
-            // CategorieDAO.Adauga_Categorii(listaCategorii);
 
             ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaProdusString);
             lista_produse.setAdapter(adapter);
