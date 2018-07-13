@@ -44,7 +44,7 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
 
             case R.id.btn_add:
                 Log.e(TAG, "Buton de adauga apasat.");
-                Intent myIntent = new Intent(ListeazaProduseActivity.this, AddCategorieActivity.class);
+                Intent myIntent = new Intent(ListeazaProduseActivity.this, AddProdusActivity.class);
                 ListeazaProduseActivity.this.startActivity(myIntent);
         }
     }

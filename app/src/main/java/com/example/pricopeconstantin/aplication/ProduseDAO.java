@@ -32,7 +32,7 @@ public class ProduseDAO {
 
 
 
-    public Produse adaugareProdus(String numeProdus, String categorie,int pretProdus) {
+    public Produse adaugareProdus(String numeProdus, String categorie,double pretProdus) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_NUME_PRODUS, numeProdus);
       //  values.put(DatabaseHelper.COLUMN_CATEGORIE_PRODUS, categorie);
@@ -81,7 +81,7 @@ public class ProduseDAO {
         produs.setID(cursor.getLong(0));
         produs.setNumeProdus(cursor.getString(1));
         produs.setCategorieProdus(cursor.getInt(2));
-        produs.setPretProdus(cursor.getInt(3));
+        produs.setPretProdus(cursor.getDouble(3));
 
 
         return produs;

@@ -91,7 +91,7 @@ public class AddProdusActivity extends Activity implements View.OnClickListener,
 
 
                         try {
-                            Produse produsCreat = produseDAO.adaugareProdus(numeProdus.toString(),listaCategoriString.get(pozitieCategorie), Integer.parseInt(pretProdus.toString()));
+                            Produse produsCreat = produseDAO.adaugareProdus(numeProdus.toString(),listaCategoriString.get(pozitieCategorie), Double.parseDouble(pretProdus.toString()));
                         } catch (Exception e) {
                             Log.e(TAG, "Eroare in creearea produsului " + e.getMessage());
                             e.printStackTrace();

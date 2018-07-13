@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createTableCategorie= "CREATE TABLE " + TABLE_CATEGORIE + " ("+ COLUMN_ID_CATEGORIE +" INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NUME_CATEGORIE +" TEXT)";
-        String createTableProdus = "CREATE TABLE " + TABLE_PRODUS + " ("+ COLUMN_ID_PRODUS +" INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NUME_PRODUS +" TEXT, " + COLUMN_PRET_PRODUS + " INTEGER, FOREIGN KEY(" + COLUMN_ID_CATEGORIE +  " REFERENCES " + TABLE_CATEGORIE + "(" + COLUMN_ID_CATEGORIE + "))";
+        String createTableProdus = "CREATE TABLE " + TABLE_PRODUS + " ("+ COLUMN_ID_PRODUS +" INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NUME_PRODUS +" TEXT, " + COLUMN_PRET_PRODUS + " REAL, FOREIGN KEY(" + COLUMN_ID_CATEGORIE +  " REFERENCES " + TABLE_CATEGORIE + "(" + COLUMN_ID_CATEGORIE + "))";
 
 
         sqLiteDatabase.execSQL(createTableProdus);
