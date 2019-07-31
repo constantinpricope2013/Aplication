@@ -19,14 +19,19 @@ import java.util.List;
 
 public class ListeazaProduseActivity extends Activity implements AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener, View.OnClickListener {
 
+
     ListView lista_produse;
     ImageButton adaugaProdus;
     private static final String TAG = "ListDataActivity";
+    ProduseDAO produseDAO;
+    CategorieDAO categorieDAO;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "Creare activitate de populare lista ");
         setContentView(R.layout.lista_produse);
+        this.produseDAO = new ProduseDAO(this);
+        this.categorieDAO = new CategorieDAO(this);
 
         lista_produse = (ListView) findViewById(R.id.lista_produse);
 
@@ -46,9 +51,8 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
     private void populateListView() {
         //Obtinem date si le introducem in lista
         Log.e(TAG, "populateListView: Displaying data in the ListView.");
-        ProduseDAO produseDAO;
 
-        List<Produse> listaProduse = ProduseDAO.listeazaToateProduse();
+        List<Produse> listaProduse = produseDAO.listeazaToateProduse();
         List<String> listaProdusString = new ArrayList<>();
 
         if(listaProduse.size() > 0) {
@@ -58,9 +62,15 @@ public class ListeazaProduseActivity extends Activity implements AdapterView.OnI
                     String str = Integer.toString(i) + "  " + (listaProduse.get(i)).toString();
                     Log.e(TAG, (listaProduse.get(i)).toString());
                     listaProdusString.add(str);
+
+
+
             }
+
             ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaProdusString);
             lista_produse.setAdapter(adapter);
+
+
         }
         else
         {

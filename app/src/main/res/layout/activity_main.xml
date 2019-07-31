@@ -15,12 +15,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Adauga Produs" />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adauga Categorie" />
 
     <Button
         android:id="@+id/listeazaProduse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Vezi toate produsele existente" />
+    <Button
+        android:id="@+id/listeazaCategorii"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vezi toate categoriile existente" />
 
 
 </LinearLayout>

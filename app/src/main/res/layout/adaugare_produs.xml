@@ -31,24 +31,28 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number" />
+        android:background="@android:color/transparent"
+        android:textColor="@color/red_bg_header"
+        android:fontFamily="sans-serif-regular"
+        android:textSize="18sp"
+        android:text=""
+        android:padding="4dp"
+        android:inputType="number"/>
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:text="@string/categoria_produsului" />
 
-    <EditText
-        android:id="@+id/etnum2"
+    <Spinner
+        android:id="@+id/spinner1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
-
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"/>
     <Button
         android:id="@+id/add"
         android:layout_width="wrap_content"
@@ -59,6 +63,6 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 
 </android.support.v7.widget.LinearLayoutCompat>

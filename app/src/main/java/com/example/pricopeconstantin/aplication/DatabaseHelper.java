@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_CATEGORIE = "Categorie";
     public static final String COLUMN_ID_CATEGORIE = "ID_Categorie";
-    public static final String COLUMN_NUME_CATEGGORIE = "Nume_Categorie";
+    public static final String COLUMN_NUME_CATEGORIE = "Nume_Categorie";
 
     public DatabaseHelper(Context context) {
         super(context, bd, null, DATABASE_VERSION);
@@ -30,8 +30,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTableProdus = "CREATE TABLE " + TABLE_PRODUS + " ("+ COLUMN_ID_PRODUS +" INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NUME_PRODUS +" TEXT, " + COLUMN_PRET_PRODUS + " INTEGER, " + COLUMN_CATEGORIE_PRODUS +  " TEXT)";
-        String createTableCategorie= "CREATE TABLE " + TABLE_CATEGORIE + " ("+ COLUMN_ID_CATEGORIE +" INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NUME_CATEGGORIE +" TEXT)";
+        String createTableCategorie= "CREATE TABLE " + TABLE_CATEGORIE + " ("+ COLUMN_ID_CATEGORIE +" INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NUME_CATEGORIE +" TEXT)";
+        String createTableProdus = "CREATE TABLE " + TABLE_PRODUS + " ("+ COLUMN_ID_PRODUS +" INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NUME_PRODUS +" TEXT, " + COLUMN_PRET_PRODUS + " REAL, FOREIGN KEY(" + COLUMN_ID_CATEGORIE +  " REFERENCES " + TABLE_CATEGORIE + "(" + COLUMN_ID_CATEGORIE + "))";
+
 
         sqLiteDatabase.execSQL(createTableProdus);
         sqLiteDatabase.execSQL(createTableCategorie);
